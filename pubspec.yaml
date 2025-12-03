@@ -1,0 +1,20 @@
+name: simple_value_object_generator
+description: A starting point for Dart libraries or applications.
+version: 0.0.1
+# repository: https://github.com/my_org/my_repo
+
+environment:
+  sdk: '>=3.0.0'
+
+dependencies:
+  simple_value_object_annotation:
+    git: https://github.com/r-koubou/dart_simple_value_object_annotation.git
+  build: ^4.0.3
+  source_gen: ^4.1.1
+  analyzer: ^9.0.0
+
+
+dev_dependencies:
+  lints: ^6.0.0
+  test: ^1.28.0
+  build_runner: ^2.10.4

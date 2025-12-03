@@ -1,0 +1,13 @@
+targets:
+  $default:
+    builders:
+      simple_value_object_generator:
+        enabled: true
+
+builders:
+  simple_value_object_generator:
+    import: "package:simple_value_object_generator/builder.dart"
+    builder_factories: ["valueObjectGenerator"]
+    build_extensions: {".dart": [".g.part"]}
+    auto_apply: dependents
+    applies_builders: ["source_gen|combining_builder"]

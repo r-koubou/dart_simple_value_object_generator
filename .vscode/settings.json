@@ -1,0 +1,9 @@
+{
+  "[dart]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll": "explicit",
+      "source.organizeImports": "explicit",
+      "source.sortMembers": "never"
+    }
+  }
+}
