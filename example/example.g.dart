@@ -9,15 +9,8 @@ part of 'example.dart';
 class _$Price {
   final int value;
 
-  _$Price(this.value) {
-    if (value < 0) {
-      throw ArgumentError.value(value, 'value', 'must be >= 0');
-    }
-
-    if (value > 10000) {
-      throw ArgumentError.value(value, 'value', 'must be <= 10000');
-    }
-  }
+  // ignore: empty_constructor_bodies
+  _$Price(this.value) {}
   @override
   String toString() => value.toString();
 
@@ -32,25 +25,26 @@ class _$Price {
   }
 
   bool operator <(_$Price other) {
-    return this.value < other.value;
+    return value < other.value;
   }
 
   bool operator <=(_$Price other) {
-    return this.value <= other.value;
+    return value <= other.value;
   }
 
   bool operator >(_$Price other) {
-    return this.value > other.value;
+    return value > other.value;
   }
 
   bool operator >=(_$Price other) {
-    return this.value >= other.value;
+    return value >= other.value;
   }
 }
 
 class _$Name {
   final String value;
 
+  // ignore: empty_constructor_bodies
   _$Name(this.value) {
     if (value.isEmpty) {
       throw ArgumentError.value(value, 'value', 'length must be >= 1');
