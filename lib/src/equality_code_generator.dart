@@ -1,4 +1,4 @@
-import 'code_writer.dart';
+import 'code_generator.dart';
 
 final class EqualityCodeGenerator implements CodeGenerator {
   final String className;

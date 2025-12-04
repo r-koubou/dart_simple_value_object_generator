@@ -1,4 +1,4 @@
-import 'code_writer.dart';
+import 'code_generator.dart';
 
 final class MinValidationCodeGenerator implements CodeGenerator {
   final num? min;

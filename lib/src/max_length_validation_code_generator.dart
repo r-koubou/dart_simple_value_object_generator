@@ -1,4 +1,4 @@
-import 'code_writer.dart';
+import 'code_generator.dart';
 
 final class MaxLengthValidationCodeGenerator implements CodeGenerator {
   final int? maxLength;
