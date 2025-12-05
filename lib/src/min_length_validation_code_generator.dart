@@ -1,16 +1,20 @@
 import 'code_generator.dart';
+import 'value_object_generator_option.dart';
 
 final class MinLengthValidationCodeGenerator implements CodeGenerator {
-  final int? minLength;
-  final String valueName;
+  final ValueObjectGeneratorOption option;
 
-  MinLengthValidationCodeGenerator(this.minLength, {this.valueName = 'value'});
+  MinLengthValidationCodeGenerator(this.option);
 
   @override
   void generate(StringBuffer buffer) {
-    if (minLength == null) {
+    if (option.annotation.minLength == null) {
       return;
     }
+
+    final minLength = option.annotation.minLength!;
+    final valueName = option.valueName;
+
     final code = minLength == 1
         ? '''
 if ($valueName.isEmpty) {

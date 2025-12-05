@@ -1,24 +1,25 @@
 import 'code_generator.dart';
+import 'value_object_generator_option.dart';
 
 final class ComparisonOperatorsCodeGenerator implements CodeGenerator {
-  final String className;
-  final String valueName;
-  final String valueType;
+  final ValueObjectGeneratorOption option;
 
-  ComparisonOperatorsCodeGenerator(this.className, this.valueType,
-      {this.valueName = 'value'});
+  ComparisonOperatorsCodeGenerator(this.option);
 
   @override
   void generate(StringBuffer buffer) {
-    if (!isComparableType(valueType)) {
+    if (!option.annotation.comparable) {
       return;
     }
 
+    final className = option.generateClassName;
+    final valueName = option.valueName;
     final operators = ['<', '<=', '>', '>='];
-    for (final operator in operators) {
+
+    for (final opr in operators) {
       final code = '''
-bool operator $operator($className other) {
-  return $valueName $operator other.$valueName;
+bool operator $opr($className other) {
+  return $valueName $opr other.$valueName;
 }
 ''';
       buffer.writeln(code);

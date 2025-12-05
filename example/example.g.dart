@@ -23,22 +23,6 @@ class _$Price {
     if (other is! _$Price) return false;
     return value == other.value;
   }
-
-  bool operator <(_$Price other) {
-    return value < other.value;
-  }
-
-  bool operator <=(_$Price other) {
-    return value <= other.value;
-  }
-
-  bool operator >(_$Price other) {
-    return value > other.value;
-  }
-
-  bool operator >=(_$Price other) {
-    return value >= other.value;
-  }
 }
 
 class _$Name {

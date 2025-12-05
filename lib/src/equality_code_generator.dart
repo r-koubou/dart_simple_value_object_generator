@@ -1,13 +1,16 @@
 import 'code_generator.dart';
+import 'value_object_generator_option.dart';
 
 final class EqualityCodeGenerator implements CodeGenerator {
-  final String className;
-  final String valueName;
+  final ValueObjectGeneratorOption option;
 
-  EqualityCodeGenerator(this.className, {this.valueName = 'value'});
+  EqualityCodeGenerator(this.option);
 
   @override
   void generate(StringBuffer buffer) {
+    final className = option.generateClassName;
+    final valueName = option.valueName;
+
     final code = '''
 @override
 int get hashCode => $valueName.hashCode;

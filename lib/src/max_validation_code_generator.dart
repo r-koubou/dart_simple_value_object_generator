@@ -1,16 +1,20 @@
 import 'code_generator.dart';
+import 'value_object_generator_option.dart';
 
 final class MaxValidationCodeGenerator implements CodeGenerator {
-  final num? max;
-  final String valueName;
+  final ValueObjectGeneratorOption option;
 
-  MaxValidationCodeGenerator(this.max, {this.valueName = 'value'});
+  MaxValidationCodeGenerator(this.option);
 
   @override
   void generate(StringBuffer buffer) {
-    if (max == null) {
+    if (option.annotation.max == null) {
       return;
     }
+
+    final max = option.annotation.max!;
+    final valueName = option.valueName;
+
     final code = '''if ($valueName > $max) {
   throw ArgumentError.value($valueName, '$valueName', 'must be <= $max');
 }
