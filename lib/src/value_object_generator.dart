@@ -3,13 +3,10 @@ import 'package:build/build.dart';
 import 'package:simple_value_object_annotation/value_object_annotation.dart';
 import 'package:source_gen/source_gen.dart';
 
-import 'comparison_operators_code_generator.dart';
-import 'equality_code_generator.dart';
 import 'max_length_validation_code_generator.dart';
 import 'max_validation_code_generator.dart';
 import 'min_length_validation_code_generator.dart';
 import 'min_validation_code_generator.dart';
-import 'to_string_code_generator.dart';
 import 'value_object_generator_option.dart';
 
 /// Code generator for [ValueObject]
@@ -22,16 +19,16 @@ class ValueObjectGenerator extends GeneratorForAnnotation<ValueObject> {
     ConstantReader annotation,
     BuildStep buildStep,
   ) {
-    if (element is! ClassElement) {
+    if (element is! TypeAliasElement) {
       throw InvalidGenerationSourceError(
-        '@ValueObject can only be applied to classes.',
+        '@ValueObject can only be applied to typedef.',
         element: element,
       );
     }
 
     // Retrieve validation parameters
     final option = ValueObjectGeneratorOption.from(
-      element: element,
+      name: element.name!,
       annotation: annotation,
     );
 
@@ -53,20 +50,13 @@ class ValueObjectGenerator extends GeneratorForAnnotation<ValueObject> {
     ];
 
     final methodCoes = [
-      ToStringCodeGenerator(),
-      EqualityCodeGenerator(option),
-      ComparisonOperatorsCodeGenerator(option),
     ];
 
     // Generate class code
     final buffer = StringBuffer();
 
     // BEGIN class
-    buffer.writeln('class $className {');
-
-    // Field
-    buffer.writeln('final $valueType value;');
-    buffer.writeln();
+    buffer.writeln('extension type const $className._($valueType value) {');
 
     // Constructor
     buffer.writeln('  // ignore: empty_constructor_bodies');

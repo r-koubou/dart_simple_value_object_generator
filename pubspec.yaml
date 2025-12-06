@@ -4,11 +4,11 @@ version: 0.0.1
 # repository: https://github.com/my_org/my_repo
 
 environment:
-  sdk: '>=3.0.0'
+  sdk: '>=3.3.0'
 
 dependencies:
   simple_value_object_annotation:
-    git: https://github.com/r-koubou/dart_simple_value_object_annotation.git
+    path: ../dart_simple_value_object_annotation
   build: ^4.0.3
   source_gen: ^4.1.1
   analyzer: ^9.0.0
