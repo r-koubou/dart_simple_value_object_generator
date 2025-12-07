@@ -13,56 +13,65 @@ class ValueObjectGeneratorOption {
   /// The name of the class name to be generated
   final String generateClassName;
 
+  /// The Dart type of the value
+  final DartType valueType;
+
   /// The name of the value type
   final String valueTypeName;
 
-  /// The name of the value variable (default is 'value')
+  /// The name of the value variable
   final String valueName;
+
+  /// The default value name (='value')
+  static const String defaultValueName = 'value';
 
   ValueObjectGeneratorOption({
     required this.annotation,
     required this.className,
+    required this.valueType,
     required this.valueTypeName,
-    this.valueName = 'value',
+    this.valueName = defaultValueName,
   }) : generateClassName = '_\$$className';
 
   /// Checks if the value type name is numeric (int, double, num)
   bool isValueTypeNumeric() {
-    return valueTypeName == 'num' ||
-        valueTypeName == 'int' ||
-        valueTypeName == 'double';
+    return valueType.isDartCoreNum ||
+        valueType.isDartCoreInt ||
+        valueType.isDartCoreDouble;
   }
 
   /// Checks if the value type name is int
   bool isValueTypeInt() {
-    return valueTypeName == 'int';
+    return valueType.isDartCoreInt;
   }
 
   /// Checks if the value type name is double
   bool isValueTypeDouble() {
-    return valueTypeName == 'double';
+    return valueType.isDartCoreDouble;
   }
 
   /// Checks if the value type name is String
   bool isValueTypeString() {
-    return valueTypeName == 'String';
+    return valueType.isDartCoreString;
   }
 
   /// Creates an instance from [ConstantReader]
   factory ValueObjectGeneratorOption.from({
     required String name,
     required ConstantReader annotation,
-    String valueName = 'value',
+    String valueName = defaultValueName,
   }) {
     final className = name;
 
     final interfaceType = annotation.objectValue.type as InterfaceType;
-    final valueTypeName = interfaceType.typeArguments.first.getDisplayString();
+    final valueType = interfaceType.typeArguments.first;
+    final valueTypeName = valueType.getDisplayString();
 
     final min = annotation.peek('min')?.literalValue as num?;
     final max = annotation.peek('max')?.literalValue as num?;
     final minLength = annotation.peek('minLength')?.literalValue as int?;
     final maxLength = annotation.peek('maxLength')?.literalValue as int?;
+    final allowEmpty = annotation.peek('allowEmpty')?.literalValue as bool?;
     final presets = annotation.peek('presets')?.mapValue;
 
     final annotationValue = ValueObject(
@@ -70,6 +79,7 @@ class ValueObjectGeneratorOption {
       max: max,
       minLength: minLength,
       maxLength: maxLength,
+      allowEmpty: allowEmpty,
       presets: presets?.map((k, v) {
         return MapEntry(
           k?.toStringValue() ?? '',
@@ -81,6 +91,7 @@ class ValueObjectGeneratorOption {
     return ValueObjectGeneratorOption(
       annotation: annotationValue,
       className: className,
+      valueType: valueType,
       valueTypeName: valueTypeName,
       valueName: valueName,
     );

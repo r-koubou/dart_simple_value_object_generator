@@ -3,6 +3,7 @@ import 'package:build/build.dart';
 import 'package:simple_value_object_annotation/value_object_annotation.dart';
 import 'package:source_gen/source_gen.dart';
 
+import 'allow_empty_validation_code_generator.dart';
 import 'constant_variables_code_generator.dart';
 import 'max_length_validation_code_generator.dart';
 import 'max_validation_code_generator.dart';
@@ -52,6 +53,7 @@ class ValueObjectGenerator extends GeneratorForAnnotation<ValueObject> {
       MaxValidationCodeGenerator(option),
       MinLengthValidationCodeGenerator(option),
       MaxLengthValidationCodeGenerator(option),
+      AllowEmptyValidationCodeGenerator(option),
     ];
 
     final methodCoes = [];
