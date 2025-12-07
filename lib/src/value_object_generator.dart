@@ -1,6 +1,6 @@
 import 'package:analyzer/dart/element/element.dart';
 import 'package:build/build.dart';
-import 'package:simple_value_object_annotation/value_object_annotation.dart';
+import 'package:simple_value_object_annotation/simple_value_object_annotation.dart';
 import 'package:source_gen/source_gen.dart';
 
 import 'allow_empty_validation_code_generator.dart';

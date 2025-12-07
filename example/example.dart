@@ -1,9 +1,12 @@
-import 'package:simple_value_object_annotation/value_object_annotation.dart';
+import 'package:simple_value_object_annotation/simple_value_object_annotation.dart';
 
 part 'example.g.dart';
 
 @ValueObject<int>(min: 0, max: 100, presets: {'zero': 0, 'one': 1})
 typedef Id = _$Id;
+
+@ValueObject<String>(allowEmpty: false)
+typedef Email = _$Email;
 
 // @ValueObject<int>(comparable: true)
 // final class Price extends _$Price {

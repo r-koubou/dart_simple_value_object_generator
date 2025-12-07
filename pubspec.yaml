@@ -9,7 +9,7 @@ environment:
 
 dependencies:
   simple_value_object_annotation:
-    path: ../dart_simple_value_object_annotation
+    git: https://github.com/r-koubou/dart_simple_value_object_annotation.git
   build: ^4.0.3
   source_gen: ^4.1.1
   analyzer: ^9.0.0
