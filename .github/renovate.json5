@@ -10,7 +10,7 @@
     ],
     // Every Saturday at AM 0:00
     "schedule": [
-        "0 0 * * *"
+        "0 0 * * 6"
     ],
     // Base branch for PRs
     "baseBranches": [

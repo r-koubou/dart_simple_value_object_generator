@@ -10,7 +10,7 @@ class ValueObjectGeneratorOption {
   /// The name of the class name
   final String className;
 
-  /// The name of the class name to be generated
+  /// The name of the generated class
   final String generateClassName;
 
   /// The Dart type of the value
