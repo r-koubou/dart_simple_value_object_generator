@@ -2,16 +2,8 @@ import 'package:simple_value_object_annotation/value_object_annotation.dart';
 
 part 'example.g.dart';
 
-@ValueObject<int>(min: 0, max: 100)
+@ValueObject<int>(min: 0, max: 100, presets: {'zero': 0, 'one': 1})
 typedef Id = _$Id;
-
-extension type const X._(int value) {
-  X(this.value) {
-    if (value < 0) {
-      throw ArgumentError('Value must be non-negative');
-    }
-  }
-}
 
 // @ValueObject<int>(comparable: true)
 // final class Price extends _$Price {
@@ -30,6 +22,9 @@ extension type const X._(int value) {
 // typedef Id = _$Id;
 
 void main() {
+  final id0 = Id.zero;
+  print('id0: ${id0.value}');
+
   final id1 = Id(1);
   final id2 = Id(1);
   final id3 = Id(2);

@@ -63,12 +63,19 @@ class ValueObjectGeneratorOption {
     final max = annotation.peek('max')?.literalValue as num?;
     final minLength = annotation.peek('minLength')?.literalValue as int?;
     final maxLength = annotation.peek('maxLength')?.literalValue as int?;
+    final presets = annotation.peek('presets')?.mapValue;
 
     final annotationValue = ValueObject(
       min: min,
       max: max,
       minLength: minLength,
       maxLength: maxLength,
+      presets: presets?.map((k, v) {
+        return MapEntry(
+          k?.toStringValue() ?? '',
+          ConstantReader(v).literalValue,
+        );
+      }),
     );
 
     return ValueObjectGeneratorOption(

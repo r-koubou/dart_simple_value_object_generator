@@ -3,6 +3,7 @@ import 'package:build/build.dart';
 import 'package:simple_value_object_annotation/value_object_annotation.dart';
 import 'package:source_gen/source_gen.dart';
 
+import 'constant_variables_code_generator.dart';
 import 'max_length_validation_code_generator.dart';
 import 'max_validation_code_generator.dart';
 import 'min_length_validation_code_generator.dart';
@@ -42,6 +43,10 @@ class ValueObjectGenerator extends GeneratorForAnnotation<ValueObject> {
     // Value type
     final valueType = option.valueTypeName;
 
+    final fieldDeclarations = [
+      ConstantVariablesCodeGenerator(option),
+    ];
+
     final constructorCodes = [
       MinValidationCodeGenerator(option),
       MaxValidationCodeGenerator(option),
@@ -49,14 +54,18 @@ class ValueObjectGenerator extends GeneratorForAnnotation<ValueObject> {
       MaxLengthValidationCodeGenerator(option),
     ];
 
-    final methodCoes = [
-    ];
+    final methodCoes = [];
 
     // Generate class code
     final buffer = StringBuffer();
 
     // BEGIN class
     buffer.writeln('extension type const $className._($valueType value) {');
+
+    // Field declarations
+    for (final generator in fieldDeclarations) {
+      generator.generate(buffer);
+    }
 
     // Constructor
     buffer.writeln('  // ignore: empty_constructor_bodies');
