@@ -56,7 +56,7 @@ class ValueObjectGenerator extends GeneratorForAnnotation<ValueObject> {
       AllowEmptyValidationCodeGenerator(option),
     ];
 
-    final methodCoes = [];
+    final methodCodes = [];
 
     // Generate class code
     final buffer = StringBuffer();
@@ -78,7 +78,7 @@ class ValueObjectGenerator extends GeneratorForAnnotation<ValueObject> {
     buffer.writeln('}');
 
     // Methods
-    for (final generator in methodCoes) {
+    for (final generator in methodCodes) {
       generator.generate(buffer);
     }
 
