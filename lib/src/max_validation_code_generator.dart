@@ -12,10 +12,11 @@ final class MaxValidationCodeGenerator implements CodeGenerator {
       return;
     }
 
-    final max = option.annotation.max!;
     final valueName = option.valueName;
+    final max = option.annotation.max!;
 
-    final code = '''if ($valueName > $max) {
+    final code = '''
+if ($valueName > $max) {
   throw ArgumentError.value($valueName, '$valueName', 'must be <= $max');
 }
 ''';
