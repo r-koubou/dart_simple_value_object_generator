@@ -7,10 +7,6 @@ part of 'example.dart';
 // **************************************************************************
 
 extension type const _$Id._(int value) {
-  // ignore: unused_field
-  static const _$Id zero = _$Id._(0);
-  // ignore: unused_field
-  static const _$Id one = _$Id._(1);
   // ignore: empty_constructor_bodies
   _$Id(this.value) {
     if (value < 0) {
