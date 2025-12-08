@@ -4,13 +4,13 @@ import 'package:source_gen/source_gen.dart';
 
 /// Options for generating value object code
 final class ValueObjectGeneratorOption {
-  /// The annotation instance that values are derived
+  /// The annotation instance from which values are derived
   final ValueObject annotation;
 
-  /// The name of the type name
+  /// The name of the type
   final String typeName;
 
-  /// The name of the generated type name
+  /// The name of the generated type
   final String generateTypeName;
 
   /// The Dart type of the value
@@ -33,24 +33,24 @@ final class ValueObjectGeneratorOption {
     this.valueName = defaultValueName,
   }) : generateTypeName = '_\$$typeName';
 
-  /// Checks if the value type name is numeric (int, double, num)
+  /// Checks if the value type is numeric (int, double, num)
   bool isValueTypeNumeric() {
     return valueType.isDartCoreNum ||
         valueType.isDartCoreInt ||
         valueType.isDartCoreDouble;
   }
 
-  /// Checks if the value type name is int
+  /// Checks if the value type is int
   bool isValueTypeInt() {
     return valueType.isDartCoreInt;
   }
 
-  /// Checks if the value type name is double
+  /// Checks if the value type is double
   bool isValueTypeDouble() {
     return valueType.isDartCoreDouble;
   }
 
-  /// Checks if the value type name is String
+  /// Checks if the value type is String
   bool isValueTypeString() {
     return valueType.isDartCoreString;
   }
