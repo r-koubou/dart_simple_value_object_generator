@@ -7,7 +7,7 @@ part 'example.g.dart';
 @ValueObject<int>(min: 0, max: 100)
 typedef Id = _$Id;
 
-@ValueObject<String>(allowEmpty: false)
+@ValueObject<String>(allowEmpty: false, maxLength: 200)
 typedef Email = _$Email;
 
 void main() {

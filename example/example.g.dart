@@ -22,6 +22,10 @@ extension type const _$Id._(int value) {
 extension type const _$Email._(String value) {
   // ignore: empty_constructor_bodies
   _$Email(this.value) {
+    if (value.length > 200) {
+      throw ArgumentError.value(value, 'value', 'length must be <= 200');
+    }
+
     if (value.isEmpty) {
       throw ArgumentError.value(value, 'value', 'must not be empty');
     }
