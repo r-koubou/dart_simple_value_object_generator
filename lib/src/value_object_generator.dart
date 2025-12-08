@@ -1,15 +1,13 @@
 import 'package:analyzer/dart/element/element.dart';
 import 'package:build/build.dart';
-import 'package:simple_value_object_annotation/value_object_annotation.dart';
+import 'package:simple_value_object_annotation/simple_value_object_annotation.dart';
 import 'package:source_gen/source_gen.dart';
 
-import 'comparison_operators_code_generator.dart';
-import 'equality_code_generator.dart';
+import 'allow_empty_validation_code_generator.dart';
 import 'max_length_validation_code_generator.dart';
 import 'max_validation_code_generator.dart';
 import 'min_length_validation_code_generator.dart';
 import 'min_validation_code_generator.dart';
-import 'to_string_code_generator.dart';
 import 'value_object_generator_option.dart';
 
 /// Code generator for [ValueObject]
@@ -22,16 +20,16 @@ class ValueObjectGenerator extends GeneratorForAnnotation<ValueObject> {
     ConstantReader annotation,
     BuildStep buildStep,
   ) {
-    if (element is! ClassElement) {
+    if (element is! TypeAliasElement) {
       throw InvalidGenerationSourceError(
-        '@ValueObject can only be applied to classes.',
+        '@ValueObject can only be applied to typedef.',
         element: element,
       );
     }
 
     // Retrieve validation parameters
     final option = ValueObjectGeneratorOption.from(
-      element: element,
+      name: element.name!,
       annotation: annotation,
     );
 
@@ -45,28 +43,32 @@ class ValueObjectGenerator extends GeneratorForAnnotation<ValueObject> {
     // Value type
     final valueType = option.valueTypeName;
 
+    final fieldDeclarations = [
+      // Additional field declarations
+    ];
+
     final constructorCodes = [
       MinValidationCodeGenerator(option),
       MaxValidationCodeGenerator(option),
       MinLengthValidationCodeGenerator(option),
       MaxLengthValidationCodeGenerator(option),
+      AllowEmptyValidationCodeGenerator(option),
     ];
 
-    final methodCoes = [
-      ToStringCodeGenerator(),
-      EqualityCodeGenerator(option),
-      ComparisonOperatorsCodeGenerator(option),
+    final methodCodes = [
+      // Additional method codes
     ];
 
     // Generate class code
     final buffer = StringBuffer();
 
     // BEGIN class
-    buffer.writeln('class $className {');
+    buffer.writeln('extension type const $className._($valueType value) {');
 
-    // Field
-    buffer.writeln('final $valueType value;');
-    buffer.writeln();
+    // Field declarations
+    for (final generator in fieldDeclarations) {
+      generator.generate(buffer);
+    }
 
     // Constructor
     buffer.writeln('  // ignore: empty_constructor_bodies');
@@ -77,7 +79,7 @@ class ValueObjectGenerator extends GeneratorForAnnotation<ValueObject> {
     buffer.writeln('}');
 
     // Methods
-    for (final generator in methodCoes) {
+    for (final generator in methodCodes) {
       generator.generate(buffer);
     }
 
