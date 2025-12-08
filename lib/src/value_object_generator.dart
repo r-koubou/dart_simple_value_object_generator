@@ -11,7 +11,7 @@ import 'min_validation_code_generator.dart';
 import 'value_object_generator_option.dart';
 
 /// Code generator for [ValueObject]
-class ValueObjectGenerator extends GeneratorForAnnotation<ValueObject> {
+final class ValueObjectGenerator extends GeneratorForAnnotation<ValueObject> {
   const ValueObjectGenerator();
 
   @override
@@ -37,8 +37,8 @@ class ValueObjectGenerator extends GeneratorForAnnotation<ValueObject> {
   }
 
   String _generate(ValueObjectGeneratorOption option) {
-    // Class name
-    final className = option.generateClassName;
+    // Type name
+    final typeName = option.generateTypeName;
 
     // Value type
     final valueType = option.valueTypeName;
@@ -59,11 +59,11 @@ class ValueObjectGenerator extends GeneratorForAnnotation<ValueObject> {
       // Additional method codes
     ];
 
-    // Generate class code
+    // Generate extension type code
     final buffer = StringBuffer();
 
-    // BEGIN class
-    buffer.writeln('extension type const $className._($valueType value) {');
+    // BEGIN extension type
+    buffer.writeln('extension type const $typeName._($valueType value) {');
 
     // Field declarations
     for (final generator in fieldDeclarations) {
@@ -72,7 +72,7 @@ class ValueObjectGenerator extends GeneratorForAnnotation<ValueObject> {
 
     // Constructor
     buffer.writeln('  // ignore: empty_constructor_bodies');
-    buffer.writeln('$className(this.value) {');
+    buffer.writeln('$typeName(this.value) {');
     for (final generator in constructorCodes) {
       generator.generate(buffer);
     }
@@ -83,7 +83,7 @@ class ValueObjectGenerator extends GeneratorForAnnotation<ValueObject> {
       generator.generate(buffer);
     }
 
-    // END class
+    // END extension type
     buffer.writeln('}');
 
     return buffer.toString();

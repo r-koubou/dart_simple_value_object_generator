@@ -3,15 +3,15 @@ import 'package:simple_value_object_annotation/simple_value_object_annotation.da
 import 'package:source_gen/source_gen.dart';
 
 /// Options for generating value object code
-class ValueObjectGeneratorOption {
+final class ValueObjectGeneratorOption {
   /// The annotation instance that values are derived
   final ValueObject annotation;
 
-  /// The name of the class name
-  final String className;
+  /// The name of the type name
+  final String typeName;
 
-  /// The name of the generated class
-  final String generateClassName;
+  /// The name of the generated type name
+  final String generateTypeName;
 
   /// The Dart type of the value
   final DartType valueType;
@@ -27,11 +27,11 @@ class ValueObjectGeneratorOption {
 
   ValueObjectGeneratorOption({
     required this.annotation,
-    required this.className,
+    required this.typeName,
     required this.valueType,
     required this.valueTypeName,
     this.valueName = defaultValueName,
-  }) : generateClassName = '_\$$className';
+  }) : generateTypeName = '_\$$typeName';
 
   /// Checks if the value type name is numeric (int, double, num)
   bool isValueTypeNumeric() {
@@ -61,7 +61,7 @@ class ValueObjectGeneratorOption {
     required ConstantReader annotation,
     String valueName = defaultValueName,
   }) {
-    final className = name;
+    final typeName = name;
 
     final interfaceType = annotation.objectValue.type as InterfaceType;
     final valueType = interfaceType.typeArguments.first;
@@ -83,7 +83,7 @@ class ValueObjectGeneratorOption {
 
     return ValueObjectGeneratorOption(
       annotation: annotationValue,
-      className: className,
+      typeName: typeName,
       valueType: valueType,
       valueTypeName: valueTypeName,
       valueName: valueName,
