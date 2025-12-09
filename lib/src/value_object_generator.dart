@@ -8,7 +8,7 @@ import 'max_length_validation_code_generator.dart';
 import 'max_validation_code_generator.dart';
 import 'min_length_validation_code_generator.dart';
 import 'min_validation_code_generator.dart';
-import 'number_ comparison_operator_code_generator.dart';
+import 'number_comparison_operator_code_generator.dart';
 import 'value_object_generator_option.dart';
 
 /// Code generator for [ValueObject]
