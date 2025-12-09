@@ -17,6 +17,22 @@ extension type const _$Id._(int value) {
       throw ArgumentError.value(value, 'value', 'must be <= 100');
     }
   }
+
+  bool operator <(_$Id other) {
+    return value < other.value;
+  }
+
+  bool operator <=(_$Id other) {
+    return value <= other.value;
+  }
+
+  bool operator >(_$Id other) {
+    return value > other.value;
+  }
+
+  bool operator >=(_$Id other) {
+    return value >= other.value;
+  }
 }
 
 extension type const _$Email._(String value) {
