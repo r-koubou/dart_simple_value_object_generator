@@ -34,7 +34,7 @@ void main() {
   print('id1 == id2: ${id1 == id2}');
 
   // => id1 < id3: true
-  print('id1 < id3: ${id1.value < id3.value}');
+  print('id1 < id3: ${id1 < id3}');
 
   try {
     // Should throw an Exception
