@@ -8,6 +8,7 @@ import 'max_length_validation_code_generator.dart';
 import 'max_validation_code_generator.dart';
 import 'min_length_validation_code_generator.dart';
 import 'min_validation_code_generator.dart';
+import 'number_ comparison_operator_code_generator.dart';
 import 'value_object_generator_option.dart';
 
 /// Code generator for [ValueObject]
@@ -57,6 +58,7 @@ final class ValueObjectGenerator extends GeneratorForAnnotation<ValueObject> {
 
     final methodCodes = [
       // Additional method codes
+      NumberComparisonOperatorCodeGenerator(option),
     ];
 
     // Generate extension type code
@@ -77,6 +79,7 @@ final class ValueObjectGenerator extends GeneratorForAnnotation<ValueObject> {
       generator.generate(buffer);
     }
     buffer.writeln('}');
+    buffer.writeln();
 
     // Methods
     for (final generator in methodCodes) {
