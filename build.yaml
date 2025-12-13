@@ -6,7 +6,7 @@ targets:
 
 builders:
   simple_value_object_generator:
-    import: "package:simple_value_object_generator/builder.dart"
+    import: "package:simple_value_object_generator/simple_value_object_generator.dart"
     builder_factories: ["valueObjectGenerator"]
     build_extensions: {".dart": [".g.part"]}
     auto_apply: dependents
