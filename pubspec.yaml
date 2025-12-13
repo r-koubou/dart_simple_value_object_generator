@@ -1,14 +1,22 @@
 name: simple_value_object_generator
-description: A starting point for Dart libraries or applications.
-version: 0.0.1
-# repository: https://github.com/my_org/my_repo
+description: A Dart code generator that simplifies the creation of Value Objects using Dart's extension type.
+version: 1.0.0
+homepage: https://github.com/r-koubou/dart_simple_barrel_generator
+repository: https://github.com/r-koubou/dart_simple_barrel_generator
+
+platforms:
+  android:
+  ios:
+  linux:
+  macos:
+  windows:
 
 environment:
-  sdk: '>=3.0.0'
+  # extension types: available since Dart SDK 3.3
+  sdk: '>=3.3.0 <4.0.0'
 
 dependencies:
-  simple_value_object_annotation:
-    git: https://github.com/r-koubou/dart_simple_value_object_annotation.git
+  simple_value_object_annotation: ^1.0.0
   build: ^4.0.3
   source_gen: ^4.1.1
   analyzer: ^9.0.0
