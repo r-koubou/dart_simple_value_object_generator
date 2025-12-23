@@ -30,7 +30,7 @@ final class ValueObjectGenerator extends GeneratorForAnnotation<ValueObject> {
       );
     }
 
-    // The type name from the right-hand side of the typedef (e.g., _$Email in 'typedef Email = _$Email').
+    // The type name from the right-hand side of the typedef (e.g., $Email in 'typedef Email = $Email').
     String? generateTypeName;
 
     // Get the name of the right-hand side (e.g., $Email) from the AST.
