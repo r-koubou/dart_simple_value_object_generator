@@ -6,9 +6,9 @@ part of 'example.dart';
 // ValueObjectGenerator
 // **************************************************************************
 
-extension type const _$Id._(int value) {
+extension type const $Id._(int value) {
   // ignore: empty_constructor_bodies
-  _$Id(this.value) {
+  $Id(this.value) {
     if (value < 0) {
       throw ArgumentError.value(value, 'value', 'must be >= 0');
     }
@@ -18,26 +18,26 @@ extension type const _$Id._(int value) {
     }
   }
 
-  bool operator <(_$Id other) {
+  bool operator <($Id other) {
     return value < other.value;
   }
 
-  bool operator <=(_$Id other) {
+  bool operator <=($Id other) {
     return value <= other.value;
   }
 
-  bool operator >(_$Id other) {
+  bool operator >($Id other) {
     return value > other.value;
   }
 
-  bool operator >=(_$Id other) {
+  bool operator >=($Id other) {
     return value >= other.value;
   }
 }
 
-extension type const _$Email._(String value) {
+extension type const $Email._(String value) {
   // ignore: empty_constructor_bodies
-  _$Email(this.value) {
+  $Email(this.value) {
     if (value.length > 200) {
       throw ArgumentError.value(value, 'value', 'length must be <= 200');
     }

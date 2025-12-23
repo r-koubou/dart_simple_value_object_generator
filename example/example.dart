@@ -5,10 +5,10 @@ import 'package:simple_value_object_annotation/simple_value_object_annotation.da
 part 'example.g.dart';
 
 @ValueObject<int>(min: 0, max: 100)
-typedef Id = _$Id;
+typedef Id = $Id;
 
 @ValueObject<String>(allowEmpty: false, maxLength: 200)
-typedef Email = _$Email;
+typedef Email = $Email;
 
 void main() {
   final id1 = Id(1);

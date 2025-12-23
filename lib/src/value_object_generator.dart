@@ -1,3 +1,5 @@
+import 'package:analyzer/dart/analysis/results.dart';
+import 'package:analyzer/dart/ast/ast.dart';
 import 'package:analyzer/dart/element/element.dart';
 import 'package:build/build.dart';
 import 'package:simple_value_object_annotation/simple_value_object_annotation.dart';
@@ -28,9 +30,39 @@ final class ValueObjectGenerator extends GeneratorForAnnotation<ValueObject> {
       );
     }
 
+    // The type name from the right-hand side of the typedef (e.g., $Email in 'typedef Email = $Email').
+    String? generateTypeName;
+
+    // Get the name of the right-hand side (e.g., $Email) from the AST.
+    final session = element.session;
+    final parsedLibrary = session?.getParsedLibraryByElement(element.library);
+    if (parsedLibrary is ParsedLibraryResult) {
+      final node =
+          parsedLibrary.getFragmentDeclaration(element.firstFragment)?.node;
+
+      if (node is GenericTypeAlias) {
+        generateTypeName = node.type.toSource();
+      } else if (node != null) {
+        // We found a node for the typedef, but it is not the expected structure.
+        throw InvalidGenerationSourceError(
+          'Unsupported typedef structure: expected a GenericTypeAlias, '
+          'but found ${node.runtimeType}.',
+          element: element,
+        );
+      }
+    }
+
+    if (generateTypeName == null) {
+      throw InvalidGenerationSourceError(
+        'Could not determine the right-hand side type name of the typedef.',
+        element: element,
+      );
+    }
+
     // Retrieve validation parameters
     final option = ValueObjectGeneratorOption.from(
       name: element.name!,
+      generateTypeName: generateTypeName,
       annotation: annotation,
     );
 
