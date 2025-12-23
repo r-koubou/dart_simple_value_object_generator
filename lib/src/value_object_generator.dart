@@ -1,3 +1,5 @@
+import 'package:analyzer/dart/analysis/results.dart';
+import 'package:analyzer/dart/ast/ast.dart';
 import 'package:analyzer/dart/element/element.dart';
 import 'package:build/build.dart';
 import 'package:simple_value_object_annotation/simple_value_object_annotation.dart';
@@ -28,9 +30,31 @@ final class ValueObjectGenerator extends GeneratorForAnnotation<ValueObject> {
       );
     }
 
+    // typedef: right side type name
+    String? generateTypeName;
+
+    // Get the name of the right-hand side (e.g., _$Email) from the AST.
+    final session = element.session;
+    final parsedLibrary = session?.getParsedLibraryByElement(element.library);
+    if (parsedLibrary is ParsedLibraryResult) {
+      final node =
+          parsedLibrary.getFragmentDeclaration(element.firstFragment)?.node;
+      if (node is GenericTypeAlias) {
+        generateTypeName = node.type.toSource();
+      }
+    }
+
+    if (generateTypeName == null) {
+      throw InvalidGenerationSourceError(
+        'Could not determine the right-hand side type name of the typedef.',
+        element: element,
+      );
+    }
+
     // Retrieve validation parameters
     final option = ValueObjectGeneratorOption.from(
       name: element.name!,
+      generateTypeName: generateTypeName,
       annotation: annotation,
     );
 
