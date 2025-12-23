@@ -30,17 +30,25 @@ final class ValueObjectGenerator extends GeneratorForAnnotation<ValueObject> {
       );
     }
 
-    // typedef: right side type name
+    // The type name from the right-hand side of the typedef (e.g., _$Email in 'typedef Email = _$Email').
     String? generateTypeName;
 
-    // Get the name of the right-hand side (e.g., _$Email) from the AST.
+    // Get the name of the right-hand side (e.g., $Email) from the AST.
     final session = element.session;
     final parsedLibrary = session?.getParsedLibraryByElement(element.library);
     if (parsedLibrary is ParsedLibraryResult) {
       final node =
           parsedLibrary.getFragmentDeclaration(element.firstFragment)?.node;
+
       if (node is GenericTypeAlias) {
         generateTypeName = node.type.toSource();
+      } else if (node != null) {
+        // We found a node for the typedef, but it is not the expected structure.
+        throw InvalidGenerationSourceError(
+          'Unsupported typedef structure: expected a GenericTypeAlias, '
+          'but found ${node.runtimeType}.',
+          element: element,
+        );
       }
     }
 
