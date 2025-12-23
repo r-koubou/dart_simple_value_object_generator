@@ -1,6 +1,6 @@
 name: simple_value_object_generator
 description: A Dart code generator that simplifies the creation of Value Objects using Dart's extension type.
-version: 1.0.0
+version: 1.0.1
 homepage: https://github.com/r-koubou/dart_simple_barrel_generator
 repository: https://github.com/r-koubou/dart_simple_barrel_generator
 

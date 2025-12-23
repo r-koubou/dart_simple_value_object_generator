@@ -30,7 +30,7 @@ dependencies:
   simple_value_object_annotation: ^1.0.0
 
 dev_dependencies:
-  simple_value_object_generator: ^1.0.0
+  simple_value_object_generator: ^1.0.1
 ```
 
 ## Usage
@@ -45,10 +45,10 @@ import 'package:simple_value_object_annotation/simple_value_object_annotation.da
 part 'example.g.dart';
 
 @ValueObject<int>(min: 0, max: 100)
-typedef Id = _$Id;
+typedef Id = $Id;
 
 @ValueObject<String>(allowEmpty: false, maxLength: 200)
-typedef Email = _$Email;
+typedef Email = $Email;
 ```
 
 #### Supported ValueObject\<T\> annotation values
@@ -82,9 +82,9 @@ part of 'example.dart';
 // ValueObjectGenerator
 // **************************************************************************
 
-extension type const _$Id._(int value) {
+extension type const $Id._(int value) {
   // ignore: empty_constructor_bodies
-  _$Id(this.value) {
+  $Id(this.value) {
     if (value < 0) {
       throw ArgumentError.value(value, 'value', 'must be >= 0');
     }
@@ -95,9 +95,9 @@ extension type const _$Id._(int value) {
   }
 }
 
-extension type const _$Email._(String value) {
+extension type const $Email._(String value) {
   // ignore: empty_constructor_bodies
-  _$Email(this.value) {
+  $Email(this.value) {
     if (value.length > 200) {
       throw ArgumentError.value(value, 'value', 'length must be <= 200');
     }
