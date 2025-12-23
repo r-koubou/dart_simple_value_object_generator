@@ -28,10 +28,11 @@ final class ValueObjectGeneratorOption {
   ValueObjectGeneratorOption({
     required this.annotation,
     required this.typeName,
+    required this.generateTypeName,
     required this.valueType,
     required this.valueTypeName,
     this.valueName = defaultValueName,
-  }) : generateTypeName = '_\$$typeName';
+  });
 
   /// Checks if the value type is numeric (int, double, num)
   bool isValueTypeNumeric() {
@@ -58,6 +59,7 @@ final class ValueObjectGeneratorOption {
   /// Creates an instance from [ConstantReader]
   factory ValueObjectGeneratorOption.from({
     required String name,
+    required String generateTypeName,
     required ConstantReader annotation,
     String valueName = defaultValueName,
   }) {
@@ -84,6 +86,7 @@ final class ValueObjectGeneratorOption {
     return ValueObjectGeneratorOption(
       annotation: annotationValue,
       typeName: typeName,
+      generateTypeName: generateTypeName,
       valueType: valueType,
       valueTypeName: valueTypeName,
       valueName: valueName,
