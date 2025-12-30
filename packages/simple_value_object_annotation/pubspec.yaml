@@ -1,0 +1,23 @@
+name: simple_value_object_annotation
+description: >
+  An annotation package for value object source code generation.
+version: 1.0.0
+repository: https://github.com/r-koubou/dart_simple_value_object_annotation
+
+platforms:
+  android:
+  ios:
+  linux:
+  macos:
+  web:
+  windows:
+
+environment:
+  sdk: ^3.5.0
+
+resolution: workspace
+
+dependencies:
+
+dev_dependencies:
+  lints: ^6.0.0

@@ -2,7 +2,8 @@ name: workspace
 publish_to: none
 
 environment:
-  sdk: '^3.5.0'
+  sdk: ^3.5.0
 
 workspace:
   - packages/simple_value_object_generator
+  - packages/simple_value_object_annotation
