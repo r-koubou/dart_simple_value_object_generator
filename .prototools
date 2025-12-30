@@ -1,0 +1,4 @@
+dart = "3.10.0"
+
+[plugins.tools]
+dart = "github://KonstantinKai/proto-dart-plugin"
