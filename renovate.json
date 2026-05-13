@@ -1,53 +1,30 @@
 {
-    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-    "enabled": true,
-    "timezone": "Asia/Tokyo",
-    "extends": [
-        "config:recommended",
-        ":dependencyDashboard",
-        ":semanticCommits",
-        ":semanticCommitTypeAll(chore)"
-    ],
-    // Every Saturday at AM 0:00
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:best-practices"
+  ],
+  "rangeStrategy": "auto",
+  "timezone": "Asia/Tokyo",
     "schedule": [
-        "0 0 * * 6"
-    ],
-    // Base branch for PRs
-    "baseBranches": [
-        "develop"
-    ],
-    // Dart support
-    "dart": {
-        "enabled": true
+    "* 9-21 * * 6,0"
+  ],
+  "prHourlyLimit": 4,
+  "dependencyDashboard": true,
+  "packageRules": [
+    {
+      "description": "Major updates are manually reviewed",
+      "matchUpdateTypes": [
+        "major"
+      ],
+      "automerge": false
     },
-    "packageRules": [
-        // Patch is auto-merged
-        {
-            "matchManagers": [
-                "dart"
-            ],
-            "matchUpdateTypes": [
-                "patch"
-            ],
-            "automerge": false,
-            "labels": [
-                "dependencies",
-                "auto-merge"
-            ]
-        },
-        // major, minor updates are not auto-merged
-        {
-            "matchManagers": [
-                "dart"
-            ],
-            "matchUpdateTypes": [
-                "major",
-                "minor"
-            ],
-            "automerge": false,
-            "labels": [
-                "dependencies"
-            ]
-        }
-    ]
+    {
+      "description": "Automerge patch and minor updates",
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ],
+      "automerge": true
+    }
+  ]
 }
