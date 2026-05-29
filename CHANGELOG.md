@@ -1,3 +1,9 @@
+# CHANGELOG
+
+## 1.0.2
+
+Updated dependencies.
+
 ## 1.0.1
 
 Modified the generator to always create an alias with `<right-hand side alias name>`.
