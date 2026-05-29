@@ -5,7 +5,7 @@
   ],
   "rangeStrategy": "auto",
   "timezone": "Asia/Tokyo",
-    "schedule": [
+  "schedule": [
     "* 9-21 * * 6,0"
   ],
   "prHourlyLimit": 4,
