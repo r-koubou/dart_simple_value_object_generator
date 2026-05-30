@@ -1,0 +1,7 @@
+dart = ">=3.12, <4.0"
+
+[settings]
+auto-install = true
+
+[plugins.tools]
+dart = "github://KonstantinKai/proto-dart-plugin"
