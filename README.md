@@ -30,7 +30,7 @@ dependencies:
   simple_value_object_annotation: ^1.0.0
 
 dev_dependencies:
-  simple_value_object_generator: ^1.0.1
+  simple_value_object_generator: ^1.0.2
 ```
 
 ## Usage

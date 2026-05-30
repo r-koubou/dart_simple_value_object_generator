@@ -1,4 +1,4 @@
-dart = "3.12.1"
+dart = ">=3.12, <4.0"
 
 [settings]
 auto-install = true
