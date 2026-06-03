@@ -10,6 +10,10 @@ typedef Id = $Id;
 @ValueObject<String>(allowEmpty: false, maxLength: 200)
 typedef Email = $Email;
 
+@ValueObject<String>(allowEmpty: true)
+typedef AllowEmpty = $AllowEmpty;
+
+
 void main() {
   final id1 = Id(1);
   final id2 = Id(1);
@@ -35,6 +39,10 @@ void main() {
 
   // => id1 < id3: true
   print('id1 < id3: ${id1 < id3}');
+
+  final emptyString = AllowEmpty.empty;
+
+  print("emptyString == '' : ${emptyString.value == ''}");
 
   try {
     // Should throw an Exception

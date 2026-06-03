@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.0.3
+
+Added `empty` field when the type is `String` and added allowEmpty is `true` or minLength is `0`.
+
 ## 1.0.2
 
 Updated dependencies.

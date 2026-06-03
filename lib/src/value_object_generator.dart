@@ -6,6 +6,7 @@ import 'package:simple_value_object_annotation/simple_value_object_annotation.da
 import 'package:source_gen/source_gen.dart';
 
 import 'allow_empty_validation_code_generator.dart';
+import 'empty_string_code_generator.dart';
 import 'max_length_validation_code_generator.dart';
 import 'max_validation_code_generator.dart';
 import 'min_length_validation_code_generator.dart';
@@ -78,6 +79,7 @@ final class ValueObjectGenerator extends GeneratorForAnnotation<ValueObject> {
 
     final fieldDeclarations = [
       // Additional field declarations
+      EmptyStringCodeGenerator(option),
     ];
 
     final constructorCodes = [
