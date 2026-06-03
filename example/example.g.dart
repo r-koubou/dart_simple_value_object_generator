@@ -47,3 +47,10 @@ extension type const $Email._(String value) {
     }
   }
 }
+
+extension type const $AllowEmpty._(String value) {
+  static final AllowEmpty empty = AllowEmpty('');
+
+  // ignore: empty_constructor_bodies
+  $AllowEmpty(this.value) {}
+}
