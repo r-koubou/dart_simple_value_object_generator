@@ -17,7 +17,7 @@ environment:
 
 dependencies:
   simple_value_object_annotation: ^1.0.0
-  build: ^4.0.6
+  build: ^5.0.0
   source_gen: ^4.2.3
   analyzer: ^14.0.0
 
