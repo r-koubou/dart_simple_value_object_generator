@@ -1,4 +1,5 @@
-dart = ">=3.12, <4.0"
+proto = "latest"
+dart = "3.13.0"
 
 [settings]
 auto-install = true
