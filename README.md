@@ -30,7 +30,7 @@ dependencies:
   simple_value_object_annotation: ^1.0.0
 
 dev_dependencies:
-  simple_value_object_generator: ^1.0.2
+  simple_value_object_generator: ^1.0.3
 ```
 
 ## Usage
@@ -49,6 +49,9 @@ typedef Id = $Id;
 
 @ValueObject<String>(allowEmpty: false, maxLength: 200)
 typedef Email = $Email;
+
+@ValueObject<String>()
+typedef Description = $Description;
 ```
 
 #### Supported ValueObject\<T\> annotation values
@@ -107,6 +110,13 @@ extension type const $Email._(String value) {
     }
   }
 }
+
+extension type const $Description._(String value) {
+  static final Description empty = Description('');
+
+  // ignore: empty_constructor_bodies
+  $Description(this.value) {}
+}
 ```
 
 ### 3. Use it
@@ -124,9 +134,9 @@ void main() {
 
     // Validation errors
     try {
-    final invalidId = Id(-1); // Throws ArgumentError
+        final invalidId = Id(-1); // Throws ArgumentError
     } catch (e) {
-    print(e);
+        print(e);
     }
 }
 ```
