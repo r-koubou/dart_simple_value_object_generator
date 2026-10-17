@@ -1,0 +1,40 @@
+on:
+  push:
+    branches:
+      - main
+      - develop
+      - feature/**
+      - refactor/**
+      - fix/**
+      - hotfix/**
+  pull_request:
+    branches:
+      - develop
+
+jobs:
+  # Dart code analysis
+  dart-analyze:
+    runs-on: ubuntu-latest
+    steps:
+
+    #----------------------------------------------------------
+    # Checkout the repository
+    #----------------------------------------------------------
+    - name: Checkout
+      uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+    #----------------------------------------------------------
+    # Setup Dart SDK from .prototools
+    #----------------------------------------------------------
+    - name: Setup Dart SDK from .prototools
+      uses: moonrepo/setup-toolchain@261c62cb5b0f580c7be7c8cd0f023a2e96756095 # v0.6.4
+      with:
+        auto-install: true
+
+    #----------------------------------------------------------
+    # Run Dart analysis
+    #----------------------------------------------------------
+    - name: Run Dart analysis
+      run: |
+        dart pub get
+        dart analyze --fatal-warnings
